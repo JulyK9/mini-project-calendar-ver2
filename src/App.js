@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Header from './components/Header';
+import Days from './components/Days';
+import DayCells from './components/DayCells';
 
 function App() {
+
+  const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState(new Date())
+
+  // 날짜를 클릭하면 선택된 날짜로 상태를 변경하는 핸들러
+  const onDateClick = (day) => {
+    setSelectedDate(day)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="calendar">
+      <div>
+        <Header currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} />
+      </div>
+      <div>
+        <Days />
+      </div>
+      <div>
+        <DayCells
+          currentMonth={currentMonth}
+          selectedDate={selectedDate}
+          onDateClick={onDateClick}
+        />
+      </div>
     </div>
   );
 }
