@@ -5,7 +5,6 @@ export const ContainerDays = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
 `;
 
 export const StyledDays = styled.div`
@@ -14,7 +13,7 @@ export const StyledDays = styled.div`
   /* height: 2rem; */
   padding: 0.2rem;
   padding-left: 0.5rem;
-  margin: 0 1px;
+  margin: 0 0.2rem;
   background-color: #f4e4e1;
   border-radius: 5px;
   font-size: 0.9rem;
