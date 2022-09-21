@@ -13,7 +13,7 @@ const Header = ({ currentMonth, setCurrentMonth }) => {
     setCurrentMonth(addMonths(currentMonth, 1));
   };
 
-  // console.log(currentMonth);
+  console.log(currentMonth);
   // console.log(format(currentMonth, 'M')) // 현재월 포맷으로 빼내기
   // console.log(format(currentMonth, "yyyy"));
 
@@ -23,14 +23,14 @@ const Header = ({ currentMonth, setCurrentMonth }) => {
         {/* 오늘이 속한 월 */}
         <div className="header-month">{format(currentMonth, "M")}월</div>
         {/* 오늘이 속한 년도 */}
-        <div className="header-year">2022</div>
+        <div className="header-year">{format(currentMonth, "y")}</div>
       </div>
       <div className="col col-end">
         <div>
-          <ImCircleLeft size={20} cursor='pointer' onClick={handlePreMonth} />
+          <ImCircleLeft size={20} cursor="pointer" onClick={handlePreMonth} />
         </div>
         <div>
-          <ImCircleRight size={20} cursor='pointer' onClick={handleNextMonth} />
+          <ImCircleRight size={20} cursor="pointer" onClick={handleNextMonth} />
         </div>
       </div>
     </div>

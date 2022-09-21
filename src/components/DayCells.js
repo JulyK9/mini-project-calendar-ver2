@@ -76,9 +76,11 @@ const DayCells = ({ currentMonth, selectedDate, onDateClick }) => {
   while (day <= endDate) {
     // 7번씩 반복하면서 한 주를 만듦 => day를 1씩 올려주며 날짜를 추가
     for (let i = 0; i < 7; i++) {
-      formattedDate = format(day, 'd'); // 1 ~ 31
-      // console.log(formattedDate); // 그 달에 있는 달력 박스의 날짜가 모두 출력됨 (9월달력의) (8.)28 ~ (10.)1 
+      formattedDate = format(day, "d"); // 1 ~ 31
+      // console.log(formattedDate); // 그 달에 있는 달력 박스의 날짜가 모두 출력됨 (9월달력의) (8.)28 ~ (10.)1
       const cloneDay = day;
+      // console.log('formatday: ', format(day, "M"));
+      // console.log('currentMonth: ', format(currentMonth, "M"));
       days.push(
         <Cells
           className={`col cell ${
@@ -88,26 +90,26 @@ const DayCells = ({ currentMonth, selectedDate, onDateClick }) => {
               ? "today" // today 클레스네임 적용
               : isSameDay(day, selectedDate) // 오늘날짜 아니고, 생성한 날짜가 현재월이고 => 클릭한 일자이면(클릭한 날짜가 현재월이면)
               ? "selected" // => 클랙한 날짜가 현재월이면 selected 클래스네임 적용
-              : format(currentMonth, "M") !== format(day, "M") // 시작일의 월과 선택일의 월이 같지 않은가?
-              ? 'not-valid' // 같지 않으면 not-valid 클래스 네임 적용
-              : 'valid' // 같으면 valid 클래스 네임 적용
-              
-            }`}
+              // : format(currentMonth, "M") !== format(day, "M") // 시작일의 월과 선택일의 월이 같지 않은가? => 그래 이부분 없어도 적용됨
+              // ? "not-valid" // 같지 않으면 not-valid 클래스 네임 적용 => 적용되는 경우가 없는거 같은데???? => 그래 이부분 없어도 적용됨
+              : "valid" // 같으면 valid 클래스 네임 적용
+          }`}
           key={day}
           // onClick={() => onDateClick(parse(cloneDay))} // parse 는 왜??? 전달인자 수도 부족해서 경고메시지 뜸
           onClick={() => onDateClick(cloneDay)} // 날짜셀을 클릭하면 클릭된 셀의 상태가 되는 핸들러인 onDateClick을 onClick 적용  // parse 없애니 일단 오류 안뜨고 정상 작동
         >
           <NumbersInCell
             className={
-              format(currentMonth, 'M') !== format(day, 'M')
-                ? 'text not-valid'
-                : ''
-            }>
+              format(currentMonth, "M") !== format(day, "M")
+                ? "text not-valid"
+                : ""
+            }
+          >
             {formattedDate}
           </NumbersInCell>
         </Cells>
       );
-      day = addDays(day, 1)
+      day = addDays(day, 1);
     }
     rows.push(
       <Rows className="row" key={day}>
